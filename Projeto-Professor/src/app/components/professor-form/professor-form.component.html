@@ -1,0 +1,147 @@
+<div class="form-page">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <button class="btn-back" (click)="cancelar()">
+      ← Voltar
+    </button>
+    <div>
+      <h1 class="page-title">{{ isEditMode ? ' Editar Professor' : ' Novo Professor' }}</h1>
+      <p class="page-sub">{{ isEditMode ? 'Altere os dados do professor abaixo' : 'Preencha os dados para cadastrar um novo professor' }}</p>
+    </div>
+  </div>
+
+  <!-- Alert Erro -->
+  <div class="alert alert-danger" *ngIf="erro">
+    ⚠️ {{ erro }}
+  </div>
+
+  <!-- Loading -->
+  <div class="loading-box" *ngIf="loading">
+    <div class="spinner"></div>
+    <span>Carregando dados...</span>
+  </div>
+
+  <!-- Formulário -->
+  <div class="form-card" *ngIf="!loading">
+    <form [formGroup]="form" (ngSubmit)="salvar()" novalidate>
+
+      <div class="form-grid">
+
+        <!-- RGF -->
+        <div class="field" [class.field-error]="isInvalid('rgf')">
+          <label class="field-label" for="rgf">
+            RGF <span class="required">*</span>
+          </label>
+          <input
+            id="rgf"
+            type="number"
+            class="field-input"
+            formControlName="rgf"
+            placeholder="Ex: 123456"
+            min="0"
+          />
+          <div class="field-hint" *ngIf="!isInvalid('rgf')">Número de registro do professor (apenas números ≥ 0)</div>
+          <div class="field-msg" *ngIf="isInvalid('rgf')">
+            <span *ngIf="f['rgf'].errors?.['required']">RGF é obrigatório.</span>
+            <span *ngIf="f['rgf'].errors?.['min']">RGF não pode ser negativo.</span>
+            <span *ngIf="f['rgf'].errors?.['pattern']">RGF deve ser numérico.</span>
+          </div>
+        </div>
+
+        <!-- Nome -->
+        <div class="field field-wide" [class.field-error]="isInvalid('nome')">
+          <label class="field-label" for="nome">
+            Nome Completo <span class="required">*</span>
+          </label>
+          <input
+            id="nome"
+            type="text"
+            class="field-input"
+            formControlName="nome"
+            placeholder="Ex: Maria Fernanda Souza"
+          />
+          <div class="field-msg" *ngIf="isInvalid('nome')">
+            <span *ngIf="f['nome'].errors?.['required']">Nome é obrigatório.</span>
+            <span *ngIf="f['nome'].errors?.['minlength']">Nome deve ter ao menos 3 caracteres.</span>
+          </div>
+        </div>
+
+        <!-- CEP -->
+        <div class="field" [class.field-error]="isInvalid('cep')">
+          <label class="field-label" for="cep">
+            CEP <span class="required">*</span>
+          </label>
+          <input
+            id="cep"
+            type="text"
+            class="field-input"
+            formControlName="cep"
+            placeholder="00000-000"
+            maxlength="9"
+            (input)="formatarCep()"
+          />
+          <div class="field-msg" *ngIf="isInvalid('cep')">
+            <span *ngIf="f['cep'].errors?.['required']">CEP é obrigatório.</span>
+            <span *ngIf="f['cep'].errors?.['pattern']">Formato inválido (use: 00000-000).</span>
+          </div>
+        </div>
+
+        <!-- Disciplina -->
+        <div class="field" [class.field-error]="isInvalid('disciplina')">
+          <label class="field-label" for="disciplina">
+            Disciplina <span class="required">*</span>
+          </label>
+          <input
+            id="disciplina"
+            type="text"
+            class="field-input"
+            formControlName="disciplina"
+            placeholder="Ex: Desenvolvimento Web"
+          />
+          <div class="field-msg" *ngIf="isInvalid('disciplina')">
+            <span *ngIf="f['disciplina'].errors?.['required']">Disciplina é obrigatória.</span>
+          </div>
+        </div>
+
+        <!-- Idade -->
+        <div class="field" [class.field-error]="isInvalid('idade')">
+          <label class="field-label" for="idade">
+            Idade <span class="required">*</span>
+          </label>
+          <input
+            id="idade"
+            type="number"
+            class="field-input"
+            formControlName="idade"
+            placeholder="Ex: 30"
+            min="18"
+            max="100"
+          />
+          <div class="field-msg" *ngIf="isInvalid('idade')">
+            <span *ngIf="f['idade'].errors?.['required']">Idade é obrigatória.</span>
+            <span *ngIf="f['idade'].errors?.['min']">Idade mínima: 18 anos.</span>
+            <span *ngIf="f['idade'].errors?.['max']">Idade máxima: 100 anos.</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Actions -->
+      <div class="form-actions">
+        <button type="button" class="btn btn-outline" (click)="cancelar()">
+          Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="salvando">
+          <span *ngIf="!salvando">
+            {{ isEditMode ? ' Atualizar' : ' Cadastrar' }}
+          </span>
+          <span *ngIf="salvando" class="saving-state">
+            <span class="spinner-sm"></span> Salvando...
+          </span>
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

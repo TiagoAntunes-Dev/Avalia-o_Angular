@@ -1,0 +1,89 @@
+<div class="list-page">
+
+  <!-- Page Title -->
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Professores</h1>
+      <p class="page-sub">Gerencie os registros de professores cadastrados</p>
+    </div>
+    <button class="btn btn-primary" routerLink="/professores/novo">
+      <span>＋</span> Novo Professor
+    </button>
+  </div>
+
+  <!-- Mensagens -->
+  <div class="alert alert-success" *ngIf="mensagemSucesso">
+     {{ mensagemSucesso }}
+  </div>
+  <div class="alert alert-danger" *ngIf="erro">
+     {{ erro }}
+  </div>
+
+  <!-- Loading -->
+  <div class="loading-box" *ngIf="loading">
+    <div class="spinner"></div>
+    <span>Carregando professores...</span>
+  </div>
+
+  <!-- Tabela -->
+  <div class="table-card" *ngIf="!loading">
+    <div class="table-info">
+      <span class="badge">{{ professores.length }} registro(s)</span>
+    </div>
+
+    <div class="table-wrapper">
+      <table class="data-table" *ngIf="professores.length > 0; else vazio">
+        <thead>
+          <tr>
+            <th>RGF</th>
+            <th>Nome</th>
+            <th>CEP</th>
+            <th>Disciplina</th>
+            <th>Idade</th>
+            <th class="th-actions">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let prof of professores" class="table-row">
+            <td><span class="rgf-badge">{{ prof.rgf }}</span></td>
+            <td class="td-nome">{{ prof.nome }}</td>
+            <td>{{ prof.cep }}</td>
+            <td><span class="disc-chip">{{ prof.disciplina }}</span></td>
+            <td>{{ prof.idade }} anos</td>
+            <td class="td-actions">
+              <button class="btn-icon btn-edit" (click)="editarProfessor(prof.id)" title="Editar">
+                ✏️
+              </button>
+              <button class="btn-icon btn-delete" (click)="confirmarExclusao(prof.id)" title="Excluir">
+                🗑️
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ng-template #vazio>
+        <div class="empty-state">
+          <span class="empty-icon"></span>
+          <p>Nenhum professor cadastrado.</p>
+          <button class="btn btn-primary" routerLink="/professores/novo">Cadastrar Primeiro Professor</button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+
+  <!-- Modal Confirmar Exclusão -->
+  <div class="modal-overlay" *ngIf="confirmarExclusaoId !== null" (click)="cancelarExclusao()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <div class="modal-icon"></div>
+      <h3>Confirmar Exclusão</h3>
+      <p>Tem certeza que deseja <strong>remover</strong> este professor? Esta ação não pode ser desfeita.</p>
+      <div class="modal-actions">
+        <button class="btn btn-outline" (click)="cancelarExclusao()">Cancelar</button>
+        <button class="btn btn-danger" (click)="excluirProfessor()">Sim, Excluir</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+

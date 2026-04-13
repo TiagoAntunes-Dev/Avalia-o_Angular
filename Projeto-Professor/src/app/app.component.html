@@ -1,0 +1,29 @@
+<div class="app-shell">
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-icon">🎓</span>
+        <div>
+          <span class="brand-title">Sistema de Gestão de Professores</span>
+          <span class="brand-sub">Sistema de Gestão de Professores</span>
+        </div>
+      </div>
+      <nav class="header-nav">
+        <a routerLink="/professores" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          Professores
+        </a>
+        <a routerLink="/professores/novo" routerLinkActive="active">
+          + Novo Professor
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="app-footer">
+    <span>© por Tiago Antunes 2026 — Avaliação de Aprendizado</span>
+  </footer>
+</div>

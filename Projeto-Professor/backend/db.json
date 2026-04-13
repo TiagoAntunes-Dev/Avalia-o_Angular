@@ -1,0 +1,36 @@
+{
+  "professores": [
+    {
+      "rgf": 123456,
+      "nome": "João Silva Santos",
+      "cep": "01310-100",
+      "disciplina": "Desenvolvimento",
+      "idade": 30,
+      "id": 1
+    },
+    {
+      "rgf": 654321,
+      "nome": "Maria Oliveira Costa",
+      "cep": "05678-909",
+      "disciplina": "Banco de Dados",
+      "idade": 28,
+      "id": 2
+    },
+    {
+      "id": 3,
+      "rgf": 789012,
+      "nome": "Carlos Eduardo Pereira",
+      "cep": "07890-123",
+      "disciplina": "Inteligência Artificial",
+      "idade": 35
+    },
+    {
+      "rgf": 197436,
+      "nome": "Tiago Antunes",
+      "cep": "09361-173",
+      "disciplina": "Back-End",
+      "idade": 25,
+      "id": 4
+    }
+  ]
+}

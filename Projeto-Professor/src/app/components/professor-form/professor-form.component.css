@@ -1,0 +1,213 @@
+.form-page { animation: fadeIn 0.3s ease; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Page Header ── */
+.page-header {
+  margin-bottom: 1.75rem;
+}
+
+.btn-back {
+  background: none;
+  border: none;
+  color: var(--gray-400);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  transition: color var(--transition);
+  font-family: 'DM Sans', sans-serif;
+}
+
+.btn-back:hover { color: var(--navy); }
+
+.page-title {
+  font-size: 1.9rem;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+}
+
+.page-sub {
+  color: var(--gray-400);
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+/* ── Alerts ── */
+.alert {
+  padding: 0.85rem 1.2rem;
+  border-radius: var(--radius);
+  margin-bottom: 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.alert-danger { background: #fde8e8; color: #7b1e1e; border-left: 4px solid var(--danger); }
+
+/* ── Loading ── */
+.loading-box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 2rem;
+  color: var(--gray-400);
+}
+
+.spinner {
+  width: 22px; height: 22px;
+  border: 3px solid var(--gray-200);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Form Card ── */
+.form-card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 2.25rem 2.5rem;
+  box-shadow: var(--shadow-md);
+  max-width: 780px;
+}
+
+/* ── Form Grid ── */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.field-wide {
+  grid-column: span 2;
+}
+
+/* ── Field ── */
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.field-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gray-600);
+  margin-bottom: 0.45rem;
+}
+
+.required { color: var(--danger); margin-left: 2px; }
+
+.field-input {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  border: 2px solid var(--gray-200);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: var(--navy);
+  background: var(--white);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+}
+
+.field-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.18);
+}
+
+.field-input::placeholder { color: var(--gray-400); }
+
+/* Error state */
+.field-error .field-input {
+  border-color: var(--danger);
+}
+.field-error .field-input:focus {
+  box-shadow: 0 0 0 3px rgba(192,57,43,0.15);
+}
+
+.field-hint {
+  font-size: 0.78rem;
+  color: var(--gray-400);
+  margin-top: 0.35rem;
+}
+
+.field-msg {
+  font-size: 0.8rem;
+  color: var(--danger);
+  margin-top: 0.35rem;
+  font-weight: 500;
+}
+
+/* ── Form Actions ── */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--gray-200);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.6rem;
+  border-radius: var(--radius);
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: all var(--transition);
+  cursor: pointer;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--navy);
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--gold-light);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--gray-200);
+  color: var(--gray-600);
+}
+.btn-outline:hover { border-color: var(--navy); color: var(--navy); }
+
+/* ── Saving state ── */
+.saving-state {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.spinner-sm {
+  width: 16px; height: 16px;
+  border: 2px solid rgba(10,22,40,0.2);
+  border-top-color: var(--navy);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .field-wide { grid-column: span 1; }
+  .form-card { padding: 1.5rem; }
+}
