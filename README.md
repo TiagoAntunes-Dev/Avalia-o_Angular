@@ -33,3 +33,40 @@ projeto-professor/
         └── components/
             ├── professor-list/           ← Tela de listagem
             └── professor-form/           ← Tela de cadastro/edição
+
+
+```
+
+## 🧩 Interface Professor
+
+### TypeScript
+
+```typescript
+export interface Professor {
+  id?: number;
+  rgf: number;
+  nome: string;
+  cep: string;
+  disciplina: string;
+  idade: number;
+}
+
+```
+
+## ✅ Funcionalidades
+
+- Listar todos os professores
+- Cadastrar novo professor
+- Editar professor existente
+- Remover professor com confirmação
+- Validação de formulário (campos obrigatórios, formatos, etc.)
+- Formatação automática do CEP
+- Feedback visual de sucesso e erro
+
+## 🔒 Regras de Negócio
+
+- **RGF** deve ser numérico e não pode ser menor que `0`
+- **Nome** deve ter no mínimo `3` caracteres
+- **CEP** deve seguir o formato `00000-000`
+- **Idade** deve estar entre `18` e `100` anos
+- **Todos os campos** são obrigatórios
